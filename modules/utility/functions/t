@@ -1,0 +1,7 @@
+# Function call to call todo.sh
+CFG=${HOME}/.todo/todo.cfg
+if [ $# -eq 0 ]; then
+	todo.sh -d ${CFG} ls
+else
+	todo.sh -d ${CFG} $* 
+fi
