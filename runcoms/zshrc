@@ -12,3 +12,12 @@ fi
 
 # Customize to your needs...
 
+#### ---:[ Aliases ]:--- ###
+alias l='ls -lh'
+alias ll='ls -lha'
+alias ..='cd ..'
+alias entssh='ssh -i ~/Box\ Sync/Enterprise/Keys/id_ghenterprise -l admin'
+alias path='echo -e ${PATH//:/\\n}'
+alias more="less"
+alias unzip="unzip -qq"
+
