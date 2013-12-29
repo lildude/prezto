@@ -1,0 +1,10 @@
+if [ ! $1 ]
+then 
+        echo "No filename specified. Please specify a filename."
+else
+	for x in $*; do
+		echo -n "Extracting $x ..."
+	        bunzip2 -cd $1 | tar xnf -
+		echo "Done"
+	done
+fi

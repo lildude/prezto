@@ -1,0 +1,5 @@
+egrep "^#define(.*)${*}" /usr/include/*/errno.h;
+
+if [ "${?}" != 0 ] ; then
+ 	echo "${*}: Error Code not found."
+fi

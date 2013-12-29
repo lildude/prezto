@@ -1,0 +1,8 @@
+if [ ! $1 ]
+then
+   echo -n "Seconds: "
+   read EPOCH; else EPOCH=$1
+fi
+
+date -d "@${EPOCH}"
+

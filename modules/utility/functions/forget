@@ -1,0 +1,7 @@
+# Forgetting everything about a known host
+# Host as given
+ssh-keygen -R $1
+# IP address based entries
+ssh-keygen -R `getent hosts $1 | awk '{ print $1 }'`
+# FQHN entries
+ssh-keygen -R `getent hosts $1 | awk '{ print $2 }'`
