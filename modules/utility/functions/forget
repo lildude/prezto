@@ -2,6 +2,6 @@
 # Host as given
 ssh-keygen -R $1
 # IP address based entries
-ssh-keygen -R `grep /etc/hosts $1 | awk '{ print $1 }'`
+ssh-keygen -R `grep $1 /etc/hosts | awk '{ print $1 }'`
 # FQHN entries
-ssh-keygen -R `grep /etc/hosts $1 | awk '{ print $2 }'`
+ssh-keygen -R `grep $1 /etc/hosts | awk '{ print $2 }'`
