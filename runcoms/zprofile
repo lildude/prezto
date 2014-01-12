@@ -76,4 +76,6 @@ if [[ ! -d "$TMPPREFIX" ]]; then
 fi
 
 # Boxen
-source /opt/boxen/env.sh
+if [[ `hostname` != "imac" ]]; then
+  source /opt/boxen/env.sh
+fi
