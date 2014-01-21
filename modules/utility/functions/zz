@@ -5,7 +5,7 @@ else
     for x in $*
     do
   		echo -n "Extracting $x ..."
-  		zcat $x | tar xnf -
+  		zcat $x | tar xf -
   		echo "Done."
     done
 fi

@@ -5,7 +5,7 @@ else
     for x in $*
     do
   		echo -n "Extracting $x ..."
-  		gunzip -cd $x | tar xnf -
+  		gunzip -cd $x | tar xf -
   		echo "Done."
     done
 fi

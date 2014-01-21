@@ -4,7 +4,7 @@ then
 else
 	for x in $*; do
 		echo -n "Extracting $x ..."
-	        bunzip2 -cd $1 | tar xnf -
+	        bunzip2 -cd $1 | tar xf -
 		echo "Done"
 	done
 fi
