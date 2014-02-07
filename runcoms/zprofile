@@ -79,6 +79,6 @@ if [[ ! -d "$TMPPREFIX" ]]; then
 fi
 
 # Boxen
-if [[ `hostname` != "imac" ]]; then
+if [[ `hostname` == "Colins-MacBook-Pro.local" ]]; then
   source /opt/boxen/env.sh
 fi
