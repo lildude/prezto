@@ -6,6 +6,13 @@
 #
 
 function prompt_colin_precmd {
+	# Set the git config stuff for my prompt
+	email="$(git config user.email)"
+	if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]] {
+			zstyle ':vcs_info:*' formats '%F{magenta} (%F{yellow}%b%c%u%F{green}%F{magenta})' "${email}"
+	} else {
+			zstyle ':vcs_info:*' formats '%F{magenta} (%F{yellow}%b%c%u%F{red}●%F{green}%F{magenta})' "${email}"
+	}
 	vcs_info
 }
 
@@ -23,13 +30,6 @@ function prompt_colin_setup {
 
 	local right_prompt_color='%F{242}'
 
-	# Set the git config stuff for my prompt
-	email="$(git config user.email)"
-	if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]] {
-			zstyle ':vcs_info:*' formats '%F{magenta} (%F{yellow}%b%c%u%F{green}%F{magenta})' "${email}"
-	} else {
-			zstyle ':vcs_info:*' formats '%F{magenta} (%F{yellow}%b%c%u%F{red}●%F{green}%F{magenta})' "${email}"
-	}
 	# Set vcs_info parameters.
 	zstyle ':vcs_info:*' stagedstr '%F{green}●'
 	zstyle ':vcs_info:*' unstagedstr '%F{yellow}●'
