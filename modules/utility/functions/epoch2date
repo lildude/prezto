@@ -4,5 +4,4 @@ then
    read EPOCH; else EPOCH=$1
 fi
 
-date -d "@${EPOCH}"
-
+date -r "@${EPOCH}"
