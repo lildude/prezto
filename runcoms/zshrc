@@ -22,3 +22,4 @@ alias path='echo -e ${PATH//:/\\n}'
 alias more="less"
 alias unzip="unzip -qq"
 alias myprocs="ps aux | grep ${USER}"
+alias nocmt="grep -v '^$\|^\s*\#'"
