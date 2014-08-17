@@ -24,3 +24,4 @@ alias unzip="unzip -qq"
 alias myprocs="ps aux | grep ${USER}"
 alias nocmt="grep -v '^$\|^\s*\#'"
 alias vag=vagrant
+alias j="jekyll serve --watch"
