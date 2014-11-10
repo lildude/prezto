@@ -25,3 +25,6 @@ alias myprocs="ps aux | grep ${USER}"
 alias nocmt="grep -v '^$\|^\s*\#'"
 alias vag=vagrant
 alias j="jekyll serve --watch"
+
+
+zstyle ':completion:*:*:git:*' script ~/bin/git-completion.sh
