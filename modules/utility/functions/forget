@@ -1,7 +1,4 @@
 # Forgetting everything about a known host
 # Host as given
-ssh-keygen -R $1
-# IP address based entries
-ssh-keygen -R `grep $1 /etc/hosts | awk '{ print $1 }'`
-# FQHN entries
-ssh-keygen -R `grep $1 /etc/hosts | awk '{ print $2 }'`
+NAME=`grep ${1} ${HOME}/.ssh/known_hosts | cut -d, -f1`
+ssh-keygen -R ${NAME}
