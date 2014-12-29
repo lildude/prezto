@@ -25,6 +25,7 @@ alias myprocs="ps aux | grep ${USER}"
 alias nocmt="grep -v '^$\|^\s*\#'"
 alias vag=vagrant
 alias j="jekyll serve --watch"
+alias ghkey='cat "/Users/lildude/Box Sync/Enterprise/Keys/id_ghenterprise.pub" | pbcopy'
 
 
 zstyle ':completion:*:*:git:*' script ~/bin/git-completion.sh
