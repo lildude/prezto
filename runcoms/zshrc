@@ -24,7 +24,7 @@ alias unzip="unzip -qq"
 alias myprocs="ps aux | grep ${USER}"
 alias nocmt="grep -v '^$\|^\s*\#'"
 alias vag=vagrant
-alias j="jekyll serve --watch"
+alias j="JEKYLL_ENV=local jekyll serve --watch --draft"
 alias ghkey='cat "/Users/lildude/Box Sync/Enterprise/Keys/id_ghenterprise.pub" | pbcopy'
 alias ghe-dev-key='echo $(ssh-keygen -y -f  ~/github/enterprise2/id_test) " fake-ssh DEADBEEF" | pbcopy'
 
