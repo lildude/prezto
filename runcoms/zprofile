@@ -82,6 +82,6 @@ if [[ ! -d "$TMPPREFIX" ]]; then
 fi
 
 # Boxen
-if [[ `sudo scutil --get LocalHostName` == "Colins-MacBook-Pro" ]]; then
+if [[ `scutil --get LocalHostName` == "Colins-MacBook-Pro" ]]; then
   source /opt/boxen/env.sh
 fi
