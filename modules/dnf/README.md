@@ -15,7 +15,7 @@ Aliases
   - `dnfr` removes package(s).
   - `dnfs` searches for a package.
   - `dnfu` updates packages.
-  - `dnfU` upgrates packages.
+  - `dnfU` upgrades packages.
 
 Authors
 -------
@@ -26,4 +26,3 @@ Authors
 
 [1]: https://fedoraproject.org/wiki/Features/DNF
 [2]: https://github.com/sorin-ionescu/prezto/issues
-
