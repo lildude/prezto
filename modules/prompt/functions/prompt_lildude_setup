@@ -6,37 +6,43 @@
 #
 
 function prompt_lildude_precmd {
-	# Set the git config stuff for my prompt
-	email="$(git config user.email)"
-	if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]] {
-			zstyle ':vcs_info:*' formats '%F{magenta} (%F{yellow}%b%c%u%F{green}%F{magenta})' "${email}"
-	} else {
-			zstyle ':vcs_info:*' formats '%F{magenta} (%F{yellow}%b%c%u%F{red}●%F{green}%F{magenta})' "${email}"
-	}
-	vcs_info
+  # Set the git config stuff for my prompt
+  email="$(git config user.email)"
+  # If I'm working on work code, ensure the local user.email is set to my work email address.
+  if [ "${email}" = "lildood@gmail.com" ] && [ $(dirname $(pwd)) = "${HOME}/github" ] && [ -d $(pwd)/.git ]; then
+    git config user.email colin@github.com
+    email="$(git config user.email)"
+  fi
+
+  if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]] {
+    zstyle ':vcs_info:*' formats '%F{magenta} (%F{yellow}%b%c%u%F{green}%F{magenta})' "${email}"
+  } else {
+    zstyle ':vcs_info:*' formats '%F{magenta} (%F{yellow}%b%c%u%F{red}●%F{green}%F{magenta})' "${email}"
+  }
+  vcs_info
 }
 
 function prompt_lildude_setup {
-	setopt LOCAL_OPTIONS
+  setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
   prompt_opts=(cr percent subst)
 
-	# Load required functions.
-	autoload -Uz add-zsh-hook
-	autoload -Uz vcs_info
+  # Load required functions.
+  autoload -Uz add-zsh-hook
+  autoload -Uz vcs_info
 
-	# Add hook for calling vcs_info before each command.
-	add-zsh-hook precmd prompt_lildude_precmd
+  # Add hook for calling vcs_info before each command.
+  add-zsh-hook precmd prompt_lildude_precmd
 
-	local right_prompt_color='%F{242}'
+  local right_prompt_color='%F{242}'
 
-	# Set vcs_info parameters.
-	zstyle ':vcs_info:*' stagedstr '%F{green}●'
-	zstyle ':vcs_info:*' unstagedstr '%F{yellow}●'
-	zstyle ':vcs_info:*' check-for-changes true
-	zstyle ':vcs_info:*' enable git
+  # Set vcs_info parameters.
+  zstyle ':vcs_info:*' stagedstr '%F{green}●'
+  zstyle ':vcs_info:*' unstagedstr '%F{yellow}●'
+  zstyle ':vcs_info:*' check-for-changes true
+  zstyle ':vcs_info:*' enable git
 
-	# Define prompts.
+  # Define prompts.
   PROMPT="%F{magenta}[%(!.%F{red}.%F{blue})%m : %F{green}%40<...<%~\${vcs_info_msg_0_}%F{magenta}]%F{blue}%(!.#.$) %f"
   RPROMPT="${vcs_info_color}"'${vcs_info_msg_1_}'"%f"
 }
