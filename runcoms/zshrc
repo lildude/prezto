@@ -28,5 +28,12 @@ alias j="JEKYLL_ENV=local jekyll serve --watch --draft"
 alias ghkey='cat "/Users/lildude/Box Sync/Enterprise/Keys/id_ghenterprise.pub" | pbcopy'
 alias ghe-dev-key='echo $(ssh-keygen -y -f  ~/github/enterprise2/id_test) " fake-ssh DEADBEEF" | pbcopy'
 
+# Vagrant Aliases
+alias v=vagrant
+alias vst="vagrant status"
+alias vup="vagrant up"
+alias vhalt="vagrant halt"
+alias valt=vhalt
+alias vupp="vagrant up --provision"
 
 zstyle ':completion:*:*:git:*' script ~/bin/git-completion.sh
