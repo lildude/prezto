@@ -31,6 +31,7 @@ alias ghe-dev-key='echo $(ssh-keygen -y -f  ~/github/enterprise2/id_test) " fake
 # Vagrant Aliases
 alias v=vagrant
 alias vst="vagrant status"
+alias vstat=vst
 alias vup="vagrant up"
 alias vhalt="vagrant halt"
 alias valt=vhalt
