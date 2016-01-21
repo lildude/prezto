@@ -39,3 +39,6 @@ alias vupp="vagrant up --provision"
 alias vssh="vagrant ssh"
 
 zstyle ':completion:*:*:git:*' script ~/bin/git-completion.sh
+
+# Load rbenv automatically
+eval "$(rbenv init -)"
