@@ -29,6 +29,7 @@ if [[ -z "$LANG" ]]; then
   export LANG='en_US.UTF-8'
 fi
 
+export GOPATH=${HOME}/go
 #
 # Paths
 #
@@ -44,6 +45,7 @@ typeset -gU cdpath fpath mailpath path
 # Set the list of directories that Zsh searches for programs.
 path=(
   ~/bin
+  ~/go/bin
   /{bin,sbin}
   /usr/{bin,sbin}
   /usr/local/{bin,sbin}
@@ -80,9 +82,4 @@ fi
 TMPPREFIX="${TMPDIR%/}/zsh"
 if [[ ! -d "$TMPPREFIX" ]]; then
   mkdir -p "$TMPPREFIX"
-fi
-
-# Boxen
-if [[ `scutil --get LocalHostName` == "Colins-MacBook-Pro" ]]; then
-  source /opt/boxen/env.sh
 fi
