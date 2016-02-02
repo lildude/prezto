@@ -38,6 +38,10 @@ alias valt=vhalt
 alias vupp="vagrant up --provision"
 alias vssh="vagrant ssh"
 
+# Lazy Git aliases
+alias gcom="git checkout master"
+alias gup="git up"  # Uses the `up` alias in my .gitconfig
+
 zstyle ':completion:*:*:git:*' script ~/bin/git-completion.sh
 
 # Load rbenv automatically
