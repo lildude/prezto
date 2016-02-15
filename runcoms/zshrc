@@ -40,7 +40,8 @@ alias vssh="vagrant ssh"
 
 # Lazy Git aliases
 alias gcom="git checkout master"
-alias gup="git up"  # Uses the `up` alias in my .gitconfig
+alias gup="git up"  # Uses the `up` alias in my .gitconfigcd
+alias gst="git status"
 
 zstyle ':completion:*:*:git:*' script ~/bin/git-completion.sh
 
