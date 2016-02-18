@@ -27,6 +27,8 @@ alias vag=vagrant
 alias j="JEKYLL_ENV=local jekyll serve --watch --draft"
 alias ghkey='cat "/Users/lildude/Box Sync/Enterprise/Keys/id_ghenterprise.pub" | pbcopy'
 alias ghe-dev-key='echo $(ssh-keygen -y -f  ~/github/enterprise2/id_test) " fake-ssh DEADBEEF" | pbcopy'
+alias wtr='curl wttr.in/'
+alias wtrr='curl wttr.in/Reading'
 
 # Vagrant Aliases
 alias v=vagrant
