@@ -83,3 +83,6 @@ TMPPREFIX="${TMPDIR%/}/zsh"
 if [[ ! -d "$TMPPREFIX" ]]; then
   mkdir -p "$TMPPREFIX"
 fi
+
+# Set Ruby options.  Initially only disable warnings
+export RUBYOPT="-W0"
