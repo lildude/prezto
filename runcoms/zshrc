@@ -39,6 +39,8 @@ alias vhalt="vagrant halt"
 alias valt=vhalt
 alias vupp="vagrant up --provision"
 alias vssh="vagrant ssh"
+# Use `vagrant ssh-config >> ~/.ssh/config` to add current config to ssh config
+alias vsftp="sftp default"
 
 # Lazy Git aliases
 alias gcom="git checkout master"
