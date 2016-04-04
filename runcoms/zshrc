@@ -43,6 +43,7 @@ alias vssh="vagrant ssh"
 alias vsftp="sftp default"
 
 # Lazy Git aliases
+alias git=hub
 alias gcom="git checkout master"
 alias gup="git up"  # Uses the `up` alias in my .gitconfigcd
 alias gst="git status"
