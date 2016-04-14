@@ -9,7 +9,7 @@ function prompt_lildude_precmd {
   # Set the git config stuff for my prompt
   email="$(git config user.email)"
   # If I'm working on work code, ensure the local user.email is set to my work email address.
-  if [ "${email}" = "lildood@gmail.com" ] && [ $(dirname "$(pwd)") = "${HOME}/github" ] && [ -d "$(pwd)"/.git ]; then
+  if [ "${email}" = "lildood@gmail.com" ] && [ "$(dirname "$(pwd)")" = "${HOME}/github" ] && [ -d "$(pwd)/.git" ]; then
     git config user.email colin@github.com
     git config user.signingkey colin@github.com
     email="$(git config user.email)"
