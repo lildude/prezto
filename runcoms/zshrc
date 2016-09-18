@@ -64,3 +64,6 @@ fi
 
 export GPG_AGENT_INFO
 export GPG_TTY=$(tty)
+
+# added by travis gem
+[ -f /Users/lildude/.travis/travis.sh ] && source /Users/lildude/.travis/travis.sh
