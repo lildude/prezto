@@ -51,7 +51,7 @@ alias gst="git status"
 zstyle ':completion:*:*:git:*' script ~/bin/git-completion.sh
 
 # Load rbenv automatically
-eval "$(rbenv init -)"
+which rbenv > /dev/null && eval "$(rbenv init -)"
 
 # Start gpg-agent when we sign in
 # kill -0 checks to see if the pid exists
