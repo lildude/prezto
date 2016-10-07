@@ -48,8 +48,6 @@ alias gcom="git checkout master"
 alias gup="git up"  # Uses the `up` alias in my .gitconfigcd
 alias gst="git status"
 
-zstyle ':completion:*:*:git:*' script ~/bin/git-completion.sh
-
 # Load rbenv automatically
 which rbenv > /dev/null && eval "$(rbenv init -)"
 
