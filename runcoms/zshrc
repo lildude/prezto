@@ -48,6 +48,9 @@ alias gcom="git checkout master"
 alias gup="git up"  # Uses the `up` alias in my .gitconfigcd
 alias gst="git status"
 
+# Pull in AWS autocomplete manually as it doesn't work automatically - https://github.com/sorin-ionescu/prezto/issues/1142
+source /usr/local/bin/aws_zsh_completer.sh
+
 # Load rbenv automatically
 which rbenv > /dev/null && eval "$(rbenv init -)"
 
