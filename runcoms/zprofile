@@ -17,6 +17,7 @@ fi
 # Editors
 #
 
+export HOMEBREW_EDITOR='atom -n'
 export EDITOR='vim'
 export VISUAL='vim'
 export PAGER='less'
