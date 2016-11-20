@@ -8,16 +8,13 @@
 #
 # Browser
 #
-
-if [[ "$OSTYPE" == darwin* ]]; then
-  export BROWSER='open'
-fi
+[ "$(uname -s)" = "Darwin" ] &&  export BROWSER='open'
 
 #
 # Editors
 #
 
-export HOMEBREW_EDITOR='atom -n'
+[ "$(uname -s)" = "Darwin" ] && export HOMEBREW_EDITOR='atom -n'
 export EDITOR='vim'
 export VISUAL='vim'
 export PAGER='less'
@@ -26,9 +23,7 @@ export PAGER='less'
 # Language
 #
 
-if [[ -z "$LANG" ]]; then
-  export LANG='en_US.UTF-8'
-fi
+[ -z "$LANG" ] && export LANG='en_US.UTF-8'
 
 # Set go path, if dir exists.
 [ -d ${HOME}/go ] && export GOPATH=${HOME}/go
