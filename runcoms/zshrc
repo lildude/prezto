@@ -49,7 +49,9 @@ alias gup="git up"  # Uses the `up` alias in my .gitconfigcd
 alias gst="git status"
 
 # Pull in AWS autocomplete manually as it doesn't work automatically - https://github.com/sorin-ionescu/prezto/issues/1142
-source /usr/local/bin/aws_zsh_completer.sh
+[ -f /usr/local/bin/aws_zsh_completer.sh ] && source /usr/local/bin/aws_zsh_completer.sh
+# Pull in the Azure autocomplete as I've not bothered to get this working properly
+which azure > /dev/null && source <(azure --completion)
 
 # Load rbenv automatically
 which rbenv > /dev/null && eval "$(rbenv init -)"
@@ -60,7 +62,7 @@ which rbenv > /dev/null && eval "$(rbenv init -)"
 # to include the latest gpg-agent which no longer takes the `--write-env-file` opt.
 # I can probably switch to using the zprezto module at this point.
 if [[ "$OSTYPE" == darwin* ]]; then
-  if test -f $HOME/.gnupg/gpg-agent-info && kill -0 $(cut -d: -f 2 $HOME/.gnupg/gpg-agent-info) 2>/dev/null; then
+  if [ -f $HOME/.gnupg/gpg-agent-info ] && kill -0 $(cut -d: -f 2 $HOME/.gnupg/gpg-agent-info) 2>/dev/null; then
       GPG_AGENT_INFO=$(cat $HOME/.gnupg/gpg-agent-info | cut -c 16-)
   else
   # No, gpg-agent not available; start gpg-agent
