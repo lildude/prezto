@@ -46,7 +46,8 @@ path=(
   ~/go/bin
   /usr/local/{bin,sbin}
   /{bin,sbin}
-  /usr/{bin,sbin}
+  /usr/{bin,sbin},
+  ~/github/enterprise2,
   $path
 )
 
