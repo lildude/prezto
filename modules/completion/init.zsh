@@ -11,11 +11,23 @@ if [[ "$TERM" == 'dumb' ]]; then
   return 1
 fi
 
-# Add zsh-completions to $fpath.
-fpath=("${0:h}/external/src" $fpath)
+# add the completions to the fpath
+fpath=(${0:h}/external/src ${fpath})
 
-# Load and initialize the completion system ignoring insecure directories.
-autoload -Uz compinit && compinit -i
+# load and initialize the completion system
+autoload -Uz compinit && compinit -C -d "${ZDOTDIR:-$HOME}/${zcompdump_file:-.zcompdump}"
+
+{
+  # zcomple the .zcompdump in the background
+  zcompdump=${ZDOTDIR:-$HOME}/.zcompdump
+
+  if [[ -s ${zcompdump} && ( ! -s ${zcompdump}.zwc || ${zcompdump} -nt ${zcompdump}.zwc) ]]; then
+    zcompile ${zcompdump}
+  fi
+
+  unset zcompdump
+} &!
+
 
 #
 # Options
