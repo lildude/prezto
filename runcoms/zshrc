@@ -47,14 +47,30 @@ which hub > /dev/null && alias git=hub
 alias gcom="git checkout master"
 alias gup="git up"  # Uses the `up` alias in my .gitconfigcd
 alias gst="git status"
+alias g='git'
+alias gb='git branch'
+alias gbc='git checkout -b'
+alias gc='git commit --verbose'
+alias gco='git checkout'
+alias gls='git log --topo-order --stat --pretty=format:"${_git_log_medium_format}"'
+alias gld='git log --topo-order --stat --patch --full-diff --pretty=format:"${_git_log_medium_format}"'
+alias gp='git push'
+
 
 # Pull in AWS autocomplete manually as it doesn't work automatically - https://github.com/sorin-ionescu/prezto/issues/1142
 [ -f /usr/local/bin/aws_zsh_completer.sh ] && source /usr/local/bin/aws_zsh_completer.sh
-# Pull in the Azure autocomplete as I've not bothered to get this working properly
-which azure > /dev/null && source <(azure --completion)
+# Pull in the Azure autocomplete. Cache it as it can be slow at times
+which azure > /dev/null && {
+  local cache="${ZDOTDIR:-$HOME}/.zprezto/modules/completion/azure-cache.zsh"
+  [ ! -f $cache ] && azure --completion > $cache
+  source $cache
+}
 
-# Load rbenv automatically
-which rbenv > /dev/null && eval "$(rbenv init -)"
+# Lazy load rbenv automatically
+rbenv() {
+  eval "$(command rbenv init -)"
+  rbenv "$@"
+}
 
 # Start gpg-agent when we sign in, but only on OS X (for the moment)
 # kill -0 checks to see if the pid exists
@@ -63,15 +79,14 @@ which rbenv > /dev/null && eval "$(rbenv init -)"
 # I can probably switch to using the zprezto module at this point.
 if [[ "$OSTYPE" == darwin* ]]; then
   if [ -f $HOME/.gnupg/gpg-agent-info ] && kill -0 $(cut -d: -f 2 $HOME/.gnupg/gpg-agent-info) 2>/dev/null; then
-      GPG_AGENT_INFO=$(cat $HOME/.gnupg/gpg-agent-info | cut -c 16-)
+    GPG_AGENT_INFO=$(cat $HOME/.gnupg/gpg-agent-info | cut -c 16-)
   else
-  # No, gpg-agent not available; start gpg-agent
-      eval $(gpg-agent --daemon --no-grab --write-env-file $HOME/.gnupg/gpg-agent-info)
+    # No, gpg-agent not available; start gpg-agent
+    eval $(gpg-agent --daemon --no-grab --write-env-file $HOME/.gnupg/gpg-agent-info)
   fi
 
-  export GPG_AGENT_INFO
-  export GPG_TTY=$(tty)
+  export GPG_AGENT_INFO GPG_TTY=$(tty)
 fi
 
 # added by travis gem
-[ -f /Users/lildude/.travis/travis.sh ] && source /Users/lildude/.travis/travis.sh
+[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
