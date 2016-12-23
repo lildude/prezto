@@ -29,11 +29,8 @@ zstyle ':prezto:load' pmodule \
   'editor' \
   'history' \
   'directory' \
-  'spectrum' \
   'completion' \
   'utility' \
-  'git' \
-  'osx' \
   'ssh' \
   'prompt'
 
