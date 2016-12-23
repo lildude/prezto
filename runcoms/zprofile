@@ -8,25 +8,25 @@
 #
 # Browser
 #
-[ "$(uname -s)" = "Darwin" ] &&  export BROWSER='open'
+[ "$(uname -s)" = "Darwin" ] && BROWSER='open'
 
 #
 # Editors
 #
 
-[ "$(uname -s)" = "Darwin" ] && export HOMEBREW_EDITOR='atom -n'
-export EDITOR='vim'
-export VISUAL='vim'
-export PAGER='less'
+[ "$(uname -s)" = "Darwin" ] && HOMEBREW_EDITOR='atom -n'
+EDITOR='vim'
+VISUAL='vim'
+PAGER='less'
 
 #
 # Language
 #
 
-[ -z "$LANG" ] && export LANG='en_US.UTF-8'
+[ -z "$LANG" ] && LANG='en_US.UTF-8'
 
 # Set go path, if dir exists.
-[ -d ${HOME}/go ] && export GOPATH=${HOME}/go
+[ -d ${HOME}/go ] && GOPATH=${HOME}/go
 
 #
 # Paths
@@ -58,23 +58,23 @@ path=(
 # Set the default Less options.
 # Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
 # Remove -X and -F (exit if the content fits on one screen) to enable it.
-export LESS='-F -g -i -M -R -w -X -z-4'
+LESS='-F -g -i -M -R -w -X -z-4'
 
 # Set the Less input preprocessor.
 # Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
 if (( $#commands[(i)lesspipe(|.sh)] )); then
-  export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
+  LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
 fi
 
 # Ack
-export ACK_PAGER=less
+ACK_PAGER=less
 
 #
 # Temporary Files
 #
 
 if [[ ! -d "$TMPDIR" ]]; then
-  export TMPDIR="/tmp/$LOGNAME"
+  TMPDIR="/tmp/$LOGNAME"
   mkdir -p -m 700 "$TMPDIR"
 fi
 
@@ -84,4 +84,7 @@ if [[ ! -d "$TMPPREFIX" ]]; then
 fi
 
 # Set Ruby options.  Initially only disable warnings
-export RUBYOPT="-W0"
+RUBYOPT="-W0"
+
+# Export everything in one go
+export BROWSER HOMEBREW_EDITOR EDITOR VISUAL PAGER LANG GOPATH LESS LESSOPEN ACK_PAGER RUBYOPT TMPDIR
