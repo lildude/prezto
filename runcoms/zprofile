@@ -86,5 +86,8 @@ fi
 # Set Ruby options.  Initially only disable warnings
 RUBYOPT="-W0"
 
+# Conveniently locate cloud drive :-P
+ICLOUD_DRIVE="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
+
 # Export everything in one go
-export BROWSER HOMEBREW_EDITOR EDITOR VISUAL PAGER LANG GOPATH LESS LESSOPEN ACK_PAGER RUBYOPT TMPDIR
+export BROWSER HOMEBREW_EDITOR EDITOR VISUAL PAGER LANG GOPATH LESS LESSOPEN ACK_PAGER RUBYOPT TMPDIR ICLOUD_DRIVE
