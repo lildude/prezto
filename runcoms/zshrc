@@ -66,11 +66,8 @@ which azure > /dev/null && {
   source $cache
 }
 
-# Lazy load rbenv automatically
-rbenv() {
-  eval "$(command rbenv init -)"
-  rbenv "$@"
-}
+# Load rbenv automatically
+which rbenv > /dev/null && eval "$(rbenv init -)"
 
 # Start gpg-agent when we sign in, but only on OS X (for the moment)
 # kill -0 checks to see if the pid exists
