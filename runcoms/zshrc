@@ -29,7 +29,7 @@ alias ghkey='cat "/Users/lildude/Box Sync/Enterprise/Keys/id_ghenterprise.pub" |
 alias ghe-dev-key='echo $(ssh-keygen -y -f  ~/github/enterprise2/id_test) " fake-ssh DEADBEEF" | pbcopy'
 alias wtr='curl wttr.in/'
 alias wtrr='curl wttr.in/Reading'
-which ag > /dev/null && alias ack=ag
+which ag > /dev/null && alias ack='ag --hidden --pager less'
 
 # Vagrant Aliases
 alias v=vagrant
