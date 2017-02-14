@@ -72,16 +72,7 @@ ACK_PAGER=less
 #
 # Temporary Files
 #
-
-if [[ ! -d "$TMPDIR" ]]; then
-  TMPDIR="/tmp/$LOGNAME"
-  mkdir -p -m 700 "$TMPDIR"
-fi
-
-TMPPREFIX="${TMPDIR%/}/zsh"
-if [[ ! -d "$TMPPREFIX" ]]; then
-  mkdir -p "$TMPPREFIX"
-fi
+TMPPREFIX="$(mktemp -d)/zsh"
 
 # Set Ruby options.  Initially only disable warnings
 RUBYOPT="-W0"

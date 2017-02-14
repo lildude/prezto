@@ -1,3 +1,5 @@
+[![Gitter](https://badges.gitter.im/zsh-users/prezto.svg)](https://gitter.im/zsh-users/prezto?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 Prezto — Instantly Awesome Zsh
 ==============================
 
@@ -9,7 +11,9 @@ I've customised things a little, most notably my prompt is currently (in iTerm2 
 
 Prezto is the configuration framework for [Zsh][1]; it enriches the command line
 interface environment with sane defaults, aliases, functions, auto completion,
-and prompt themes.
+and prompt themes. 
+
+This repository is being actively maintained by a community of users. 
 
 Installation
 ------------
@@ -23,7 +27,7 @@ version is 4.3.17.
 
   2. Clone the repository:
 
-        git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+        git clone --recursive https://github.com/zsh-users/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 
   3. Create a new Zsh configuration by copying the Zsh configuration files
      provided:
