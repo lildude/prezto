@@ -70,21 +70,5 @@ which azure > /dev/null && {
 # Load rbenv automatically
 which rbenv > /dev/null && eval "$(rbenv init -)"
 
-# Start gpg-agent when we sign in, but only on OS X (for the moment)
-# kill -0 checks to see if the pid exists
-# TODO: This will need updating for Linux and also OS X when gpgtools is updated
-# to include the latest gpg-agent which no longer takes the `--write-env-file` opt.
-# I can probably switch to using the zprezto module at this point.
-if [[ "$OSTYPE" == darwin* ]]; then
-  if [ -f $HOME/.gnupg/gpg-agent-info ] && kill -0 $(cut -d: -f 2 $HOME/.gnupg/gpg-agent-info) 2>/dev/null; then
-    GPG_AGENT_INFO=$(cat $HOME/.gnupg/gpg-agent-info | cut -c 16-)
-  else
-    # No, gpg-agent not available; start gpg-agent
-    eval $(gpg-agent --daemon --no-grab --write-env-file $HOME/.gnupg/gpg-agent-info)
-  fi
-
-  export GPG_AGENT_INFO GPG_TTY=$(tty)
-fi
-
 # added by travis gem
 [ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
