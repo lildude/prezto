@@ -16,6 +16,7 @@ fi
 alias rm='nocorrect rm'
 alias l='ls -lh'
 alias ll='ls -lha'
+which ag > /dev/null && alias ls='exa'
 alias ..='cd ..'
 alias path='echo -e ${PATH//:/\\n}'
 alias more="less"
