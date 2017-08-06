@@ -14,8 +14,8 @@ fi
 
 #### ---:[ Aliases ]:--- ###
 alias rm='nocorrect rm'
-alias l='ls -lh'
-alias ll='ls -lha'
+alias l='ls -l'
+alias ll='ls -la'
 which ag > /dev/null && alias ls='exa'
 alias ..='cd ..'
 alias path='echo -e ${PATH//:/\\n}'
@@ -60,7 +60,7 @@ alias gp='git push'
 [ -f /usr/local/bin/aws_zsh_completer.sh ] && source /usr/local/bin/aws_zsh_completer.sh
 # Pull in the Azure autocomplete. Cache it as it can be slow at times
 which azure > /dev/null && {
-  local cache="${ZDOTDIR:-$HOME}/.zprezto/modules/completion/azure-cache.zsh"
+  cache="${ZDOTDIR:-$HOME}/.zprezto/modules/completion/azure-cache.zsh"
   [ ! -f $cache ] && azure --completion > $cache
   source $cache
 }
