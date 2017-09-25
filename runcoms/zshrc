@@ -27,6 +27,7 @@ alias j="JEKYLL_ENV=local jekyll serve --watch --draft"
 alias wtr='curl wttr.in/'
 alias wtrr='curl wttr.in/Reading'
 which ag > /dev/null && alias ag='ag --color --pager less' && alias ack=ag
+alias atom='atom-beta'
 
 # Vagrant Aliases
 alias v=vagrant
