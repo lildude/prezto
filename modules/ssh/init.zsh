@@ -20,7 +20,10 @@ fi
 _ssh_dir="$HOME/.ssh"
 
 # Set the path to the environment file if not set by another module.
-_ssh_agent_env="${_ssh_agent_env:-${TMPDIR:-/tmp}/ssh-agent.env}"
+_ssh_agent_env="${_ssh_agent_env:-${TMPDIR:-/tmp}/ssh-agent.env.$UID}"
+
+# Set the path to the persistent authentication socket.
+_ssh_agent_sock="${TMPDIR:-/tmp}/ssh-agent.sock.$UID"
 
 # Start ssh-agent if not started.
 if [[ ! -S "$SSH_AUTH_SOCK" ]]; then
@@ -32,15 +35,11 @@ fi
 # Load identities.
 if ssh-add -l 2>&1 | grep -q 'The agent has no identities'; then
   zstyle -a ':prezto:module:ssh:load' identities '_ssh_identities'
-  if (( ${#_ssh_identities} > 0 )); then
-    ${(s: :)_ssh_add_cmd} "$_ssh_dir/${^_ssh_identities[@]}" 2> /dev/null
+  # Check for Linux system and ssh-askpass presence
+  if [[ "$OSTYPE" == linux* ]] && [[ ! -a /usr/lib/ssh/x11-ssh-askpass ]]; then
+    ssh-add "${_ssh_identities:+$_ssh_dir/${^_ssh_identities[@]}}"  2> /dev/null
   else
-    # In macOS, `ssh-add -A` will load all identities defined in Keychain
-    if [[ `uname -s` == 'Darwin' ]]; then
-      ssh-add -A 2> /dev/null
-    else
-      ssh-add 2> /dev/null
-    fi
+    ssh-add "${_ssh_identities:+$_ssh_dir/${^_ssh_identities[@]}}"  < /dev/null 2> /dev/null
   fi
 fi
 
