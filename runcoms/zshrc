@@ -14,6 +14,7 @@ fi
 
 #### ---:[ Aliases ]:--- ###
 alias rm='nocorrect rm'
+which exa > /dev/null && alias ls=exa
 alias l='ls -l'
 alias ll='ls -la'
 alias ..='cd ..'
