@@ -20,6 +20,7 @@ alias ll='ls -lga'
 alias ..='cd ..'
 alias path='echo -e ${PATH//:/\\n}'
 alias more="less"
+which bat > /dev/null && { alias less=bat; alias cat=bat; export BAT_THEME="Monokai Extended" }
 alias unzip="unzip -qq"
 alias myprocs="ps aux | grep ${USER}"
 alias nocmt="grep -v '^$\|^\s*\#'"
@@ -29,6 +30,7 @@ alias wtr='curl wttr.in/'
 alias wtrr='curl wttr.in/Reading'
 which ag > /dev/null && alias ag='ag --color --pager less' && alias ack=ag
 alias atom='atom-beta'
+which prettyping > /dev/null && alias ping="prettyping --nolegend"
 
 # Vagrant Aliases
 alias v=vagrant
@@ -77,3 +79,5 @@ which nodenv > /dev/null && eval "$(nodenv init -)"
 
 # added by travis gem
 [ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
