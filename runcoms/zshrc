@@ -31,6 +31,7 @@ alias wtrr='curl wttr.in/Reading'
 which ag > /dev/null && alias ag='ag --color --pager less' && alias ack=ag
 alias atom='atom-beta'
 which prettyping > /dev/null && alias ping="prettyping --nolegend"
+which htop > /dev/null && alias top=htop
 
 # Vagrant Aliases
 alias v=vagrant
