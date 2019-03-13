@@ -1,7 +1,7 @@
 OSX
 ===
 
-Defines [Mac OS X][1] aliases and functions.
+Defines [macOS][1] aliases and functions.
 
 Settings
 --------
@@ -42,6 +42,8 @@ Functions
   - `battery-percentage` shows battery level/percentage [5].
   - `bluetooth-keyboard-battery` shows bluethooth keyboard battery level/percentage.
   - `bluetooth-mouse-battery` shows bluethooth mouse battery level/percentage.
+  - `osx-ls-download-history` displays the macOS download history.
+  - `osx-rm-download-history` deletes the macOS download history.
 
 Authors
 -------
