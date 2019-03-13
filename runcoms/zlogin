@@ -31,9 +31,12 @@
 
   # zcompile all autoloaded functions in enabled modules
   mods=(environment terminal editor history directory completion utility ssh prompt)
+
+  setopt EXTENDED_GLOB
+  local zsh_glob='^(*.zwc)(.)'
   for module in $mods; do
     if [ -d "${ZDOTDIR:-$HOME}/.zprezto/modules/$module/functions/" ]; then
-      for file in ${ZDOTDIR:-$HOME}/.zprezto/modules/$module/functions/^(*.zwc)(.); do
+      for file in ${ZDOTDIR:-$HOME}/.zprezto/modules/$module/functions/$zsh_glob; do
         zcompare ${file}
       done
     fi
