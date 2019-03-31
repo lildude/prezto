@@ -6,9 +6,12 @@
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
+# Profile loading the shell using `DEBUG_ZSH=1 zsh -i`
+[ -n "$DEBUG_ZSH" ] && zmodload zsh/zprof
 
 # Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+if [ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]; then
+  # shellcheck disable=SC1090
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
@@ -16,26 +19,27 @@ fi
 
 #### ---:[ Aliases ]:--- ###
 alias rm='nocorrect rm'
-which exa > /dev/null && alias ls=exa
 alias l='ls -lg'
 alias ll='ls -lga'
 alias ..='cd ..'
 alias path='echo -e ${PATH//:/\\n}'
 alias less="less -RMFXK"
 alias more="less"
-which bat > /dev/null && { alias cat=bat; export BAT_THEME="Monokai Extended" }
 alias unzip="unzip -qq"
-alias myprocs="ps aux | grep ${USER}"
+# shellcheck disable=SC2139
+alias myprocs="ps aux | grep $USER"
 alias nocmt="grep -v '^$\|^\s*\#'"
 alias vag=vagrant
 alias j="JEKYLL_ENV=local jekyll serve --watch --draft"
 alias wtr='curl wttr.in/'
 alias wtrr='curl wttr.in/Reading'
-which ag > /dev/null && alias ag='ag --color --pager less' && alias ack=ag
-which rg > /dev/null && rg() { /usr/local/bin/rg -p "$@" | less }
 alias atom='atom-beta'
-which prettyping > /dev/null && alias ping="prettyping --nolegend"
-which htop > /dev/null && alias top=htop
+command -v bat > /dev/null && alias cat=bat && export BAT_THEME="Monokai Extended"
+command -v exa > /dev/null && alias ls=exa
+command -v ag > /dev/null && alias ag='ag --color --pager less' && alias ack=ag
+command -v rg > /dev/null && rg() { /usr/local/bin/rg -p "$@" | less; }
+command -v prettyping > /dev/null && alias ping="prettyping --nolegend"
+command -v htop > /dev/null && alias top=htop
 
 # Vagrant Aliases
 alias v=vagrant
@@ -50,7 +54,6 @@ alias vssh="vagrant ssh"
 alias vsftp="sftp default"
 
 # Lazy Git aliases
-which hub > /dev/null && alias git=hub
 alias gcom="git checkout master"
 alias gup="git up"  # Uses the `up` alias in my .gitconfigcd
 alias gst="git status"
@@ -62,29 +65,38 @@ alias gco='git checkout'
 alias gls='git log --topo-order --stat --pretty=format:"${_git_log_medium_format}"'
 alias gld='git log --topo-order --stat --patch --full-diff --pretty=format:"${_git_log_medium_format}"'
 alias gp='git push'
-
+command -v hub > /dev/null && alias git=hub
 
 # Pull in AWS autocomplete manually as it doesn't work automatically - https://github.com/sorin-ionescu/prezto/issues/1142
-which aws > /dev/null && {
-  [ -f /usr/local/bin/aws_zsh_completer.sh ] && source /usr/local/bin/aws_zsh_completer.sh
+command -v aws > /dev/null && {
+  [ -f /usr/local/opt/awscli/share/zsh/site-functions/aws_zsh_completer.sh ] && source /usr/local/opt/awscli/share/zsh/site-functions/aws_zsh_completer.sh
 }
 
 # Pull in the Azure autocomplete. Cache it as it can be slow at times
-which azure > /dev/null && {
+command -v azure > /dev/null && {
   cache="${ZDOTDIR:-$HOME}/.zprezto/modules/completion/azure-cache.zsh"
-  [ ! -f $cache ] && azure --completion > $cache
-  source $cache
+  [ ! -f "$cache" ] && azure --completion > "$cache"
+  # shellcheck disable=SC1090
+  source "$cache"
 }
 
 # Load rbenv automatically
-which rbenv > /dev/null && eval "$(rbenv init -)"
+rbenv() {
+  eval "$(command rbenv init -)"
+  rbenv "$@"
+}
 
 # Load nodenv automatically
-which nodenv > /dev/null && eval "$(nodenv init -)"
+nodenv() {
+  eval "$(command nodenv init -)"
+  nodenv "$@"
+}
 
 # added by travis gem
-[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
+# shellcheck disable=SC1090
+[ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
+# shellcheck disable=SC1090
+[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-#test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# This must always be last.
+[ -n "$DEBUG_ZSH" ] && zprof
