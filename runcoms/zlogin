@@ -1,3 +1,5 @@
+# vim: set ft=zsh
+# shellcheck shell=bash # Closest thing to zsh whilst shellcheck doesn't support zsh
 #
 # Executes commands at login post-zshrc.
 #
