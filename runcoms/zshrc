@@ -88,6 +88,10 @@ command -v azure > /dev/null && {
 #}
 
 # Like the ~ => $HOME mapping? Well this is how I use this for other common dirs so I can easily `cd ~/gh/foo` etc.
+hash -d gh="$HOME/github"
+hash -d ent2="$HOME/github/enterprise2"
+hash -d ent-chatops="$HOME/github/enterprise-chatops"
+hash -d dev="$HOME/Development"
 
 # added by travis gem
 # shellcheck disable=SC1090
