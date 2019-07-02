@@ -80,17 +80,14 @@ command -v azure > /dev/null && {
   source "$cache"
 }
 
-# Load rbenv automatically
-rbenv() {
-  eval "$(command rbenv init -)"
-  rbenv "$@"
-}
-
 # Load nodenv automatically
-nodenv() {
-  eval "$(command nodenv init -)"
-  nodenv "$@"
-}
+#command -v nodenv > /dev/null && eval "$(nodenv init -)"
+#nodenv() {
+#  eval "$(command nodenv init -)"
+#  nodenv "$@"
+#}
+
+# Like the ~ => $HOME mapping? Well this is how I use this for other common dirs so I can easily `cd ~/gh/foo` etc.
 
 # added by travis gem
 # shellcheck disable=SC1090
