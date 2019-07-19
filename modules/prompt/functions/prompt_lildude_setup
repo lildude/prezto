@@ -44,8 +44,17 @@ function prompt_lildude_setup {
   zstyle ':vcs_info:*' enable git
 
   # Define prompts.
-  PROMPT="%F{magenta}[%(!.%F{red}.%F{blue})%m : %F{green}%40<...<%~\${vcs_info_msg_0_}%F{magenta}]%F{blue}%(!.#.$) %f"
+  # /Users/lildude/.zprezto/modules/history-substring-search becomes:
+  # [lildude-MBP18 : ...history-substring-search (master●)]$
+  #PROMPT="%F{magenta}[%(!.%F{red}.%F{blue})%m : %F{green}%40<...<%~\${vcs_info_msg_0_}%F{magenta}]%F{blue}%(!.#.$) %f"
+
+  # /Users/lildude/.zprezto/modules/history-substring-search becomes:
+  # [lildude-MBP18 : ~/.zp/m/history-substring-search (master●)]$
+  PROMPT="%F{magenta}[%(!.%F{red}.%F{blue})%m : %F{green}\$(shrink_path)\${vcs_info_msg_0_}%F{magenta}]%F{blue}%(!.#.$) %f"
+
   RPROMPT="${vcs_info_color}"'${vcs_info_msg_1_}'"%f"
 }
 
 prompt_lildude_setup "$@"
+
+## vim:ft=zsh

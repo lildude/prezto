@@ -9,6 +9,9 @@
 # Profile loading the shell using `DEBUG_ZSH=1 zsh -i`
 [ -n "$DEBUG_ZSH" ] && zmodload zsh/zprof
 
+# TODO: Look to using the simple https://github.com/zplug/zplug method of loading
+# just the bits I want instead of maintaining a bunch of unused scripts in this repo
+
 # Source Prezto.
 if [ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]; then
   # shellcheck disable=SC1090
@@ -87,7 +90,7 @@ command -v azure > /dev/null && {
 #  nodenv "$@"
 #}
 
-# Like the ~ => $HOME mapping? Well this is how I use this for other common dirs so I can easily `cd ~/gh/foo` etc.
+# Like the ~ => $HOME mapping? Well this is how I use this for other common dirs so I can easily `cd ~gh/foo` etc.
 hash -d gh="$HOME/github"
 hash -d ent2="$HOME/github/enterprise2"
 hash -d ent-chatops="$HOME/github/enterprise-chatops"

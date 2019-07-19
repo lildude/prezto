@@ -39,6 +39,7 @@ zstyle ':prezto:load' pmodule \
   'ssh' \
   'ruby' \
   'fzf-marks' \
+  'shrink-path' \
   'prompt'
 
 #
@@ -161,6 +162,13 @@ zstyle ':prezto:module:prompt' theme 'lildude'
 
 # Auto start a session when Zsh is launched in a SSH connection.
 # zstyle ':prezto:module:screen:auto-start' remote 'yes'
+
+#
+# Shrink Path
+#
+
+zstyle :prompt:shrink_path tilde yes
+zstyle :prompt:shrink_path last yes
 
 #
 # SSH
