@@ -67,6 +67,7 @@ LESS='-F -g -i -M -R -w -X -z-4'
 # Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
 if (( $#commands[(i)lesspipe(|.sh)] )); then
   LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
+  LESS_ADVANCED_PREPROCESSOR=1
 fi
 
 # Ack
@@ -87,4 +88,4 @@ ICLOUD_DRIVE="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 HOMEBREW_INSTALL_CLEANUP=1
 
 # Export everything in one go
-export BROWSER HOMEBREW_EDITOR EDITOR VISUAL PAGER LANG GOPATH LESS LESSOPEN ACK_PAGER RUBYOPT TMPDIR ICLOUD_DRIVE HOMEBREW_INSTALL_CLEANUP
+export BROWSER HOMEBREW_EDITOR EDITOR VISUAL PAGER LANG GOPATH LESS LESS_ADVANCED_PREPROCESSOR LESSOPEN ACK_PAGER RUBYOPT TMPDIR ICLOUD_DRIVE HOMEBREW_INSTALL_CLEANUP
