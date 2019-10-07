@@ -68,7 +68,10 @@ alias gco='git checkout'
 alias gls='git log --topo-order --stat --pretty=format:"${_git_log_medium_format}"'
 alias gld='git log --topo-order --stat --patch --full-diff --pretty=format:"${_git_log_medium_format}"'
 alias gp='git push'
-command -v hub > /dev/null && alias git=hub
+command -v hub > /dev/null && {
+  alias git=hub
+  alias ci="hub ci-status"
+}
 
 # Pull in AWS autocomplete manually as it doesn't work automatically - https://github.com/sorin-ionescu/prezto/issues/1142
 command -v aws > /dev/null && {
