@@ -189,3 +189,19 @@ Authors
   - [Sorin Ionescu](https://github.com/sorin-ionescu)
 
 [1]: https://github.com/sorin-ionescu/prezto/issues
+
+---
+
+# @lildude's Own Additions
+
+- `bak` make a backup copy of the file with the date appended to the filename.
+- `bz` bunzip2 and untar.
+- `epoch2date` convert time in seconds to a date.
+- `err` map error code to its description.
+- `forget` remove host from $HOME/.ssh/known_hosts.
+- `gz` gunzip and untar.
+- `hex2dec` convert hex to decimal.
+- `notify` send notification using either terminal-notifier.app or osascript.
+- `ps` exclude grep when running ps.
+- `t` call todo.sh using my own configuration.
+- `zz` zcat and untar.
