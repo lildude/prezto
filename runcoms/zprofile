@@ -46,11 +46,15 @@ typeset -gU cdpath fpath mailpath path
 path=(
   ./bin
   ~/bin
+  ~/.cargo/bin
   ~/go/bin
+  ~/.yarn/bin
+  ~/.config/yarn/global/node_modules/.bin
   /usr/local/{bin,sbin}
   /{bin,sbin}
   /usr/{bin,sbin}
   ~/github/enterprise2
+  ~/github/awesume
   $path
 )
 
