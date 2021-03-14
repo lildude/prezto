@@ -19,35 +19,14 @@
   }
 
   # Compile the completion dump to increase startup speed.
-  zcompare ${ZDOTDIR:-$HOME}/.zcompdump
-
-  # zcompile .zshrc
-  zcompare ${ZDOTDIR:-$HOME}/.zshrc
-
-  # zcompile some light module init scripts
-  #zcompare ${ZDOTDIR:-$HOME}/.zprezto/modules/git/init.zsh
-  #zcompare ${ZDOTDIR:-$HOME}/.zprezto/modules/git/alias.zsh
-  zcompare ${ZDOTDIR:-$HOME}/.zprezto/modules/utility/init.zsh
-  zcompare ${ZDOTDIR:-$HOME}/.zprezto/modules/terminal/init.zsh
-  zcompare ${ZDOTDIR:-$HOME}/.zprezto/modules/completion/init.zsh
-
-  # zcompile all autoloaded functions in enabled modules
-  mods=(environment terminal editor history directory completion utility ssh prompt)
-
-  setopt EXTENDED_GLOB
-  local zsh_glob='^(*.zwc)(.)'
-  for module in $mods; do
-    if [ -d "${ZDOTDIR:-$HOME}/.zprezto/modules/$module/functions/" ]; then
-      for file in ${ZDOTDIR:-$HOME}/.zprezto/modules/$module/functions/$zsh_glob; do
-        zcompare ${file}
-      done
-    fi
-  done
-
-) &!
+  zcompdump="${XDG_CACHE_HOME:-$HOME/.cache}/prezto/zcompdump"
+  if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
+    zcompile "$zcompdump"
+  fi
+} &!
 
 # Execute code only if STDERR is bound to a TTY.
-[[ -o INTERACTIVE && -t 2 ]] && {
+if [[ -o INTERACTIVE && -t 2 ]]; then
 
   # Print a random, hopefully interesting, adage.
   if (( $+commands[fortune] )); then
@@ -55,4 +34,4 @@
     print
   fi
 
-} >&2
+fi >&2
