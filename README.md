@@ -1,12 +1,6 @@
 Prezto — Instantly Awesome Zsh
 ==============================
 
-I've customised things a little, most notably my prompt is currently (in iTerm2 using a slightly customised dark [Solarized](http://ethanschoonover.com/solarized) theme):
-
-![lildude prompt](https://github.com/lildude/prezto/blob/master/modules/prompt/lildude-prompt.png)
-
---------------------------------------------------------------------------------
-
 Prezto is the configuration framework for [Zsh][1]; it enriches the command line
 interface environment with sane defaults, aliases, functions, auto completion,
 and prompt themes.
@@ -28,7 +22,7 @@ version is 4.3.11.
   2. Clone the repository:
 
      ```console
-     git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+     git clone --recursive https://github.com/lildude/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
      ```
 
   3. Create a new Zsh configuration by copying the Zsh configuration files
