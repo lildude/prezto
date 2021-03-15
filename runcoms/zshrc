@@ -1,13 +1,15 @@
 # vim: set ft=zsh
 # shellcheck shell=bash # Closest thing to zsh whilst shellcheck doesn't support zsh
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
+
 # Profile loading the shell using `DEBUG_ZSH=1 zsh -i`
 [ -n "$DEBUG_ZSH" ] && zmodload zsh/zprof
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # TODO: Look to using the simple https://github.com/zplug/zplug method of loading
 # just the bits I want instead of maintaining a bunch of unused scripts in this repo
@@ -17,8 +19,6 @@ if [ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]; then
   # shellcheck disable=SC1090
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
-
-# Customize to your needs...
 
 #### ---:[ Aliases ]:--- ###
 alias rm='nocorrect rm'
@@ -32,39 +32,22 @@ alias unzip="unzip -qq"
 # shellcheck disable=SC2139
 alias myprocs="ps aux | grep $USER"
 alias nocmt="grep -v '^$\|^\s*\#'"
-alias vag=vagrant
-alias j="JEKYLL_ENV=local jekyll serve --watch --draft"
-alias wtr='curl wttr.in/'
-alias wtrr='curl wttr.in/Reading'
-alias atom='atom-beta'
 command -v bat > /dev/null && alias cat=bat && export BAT_THEME="Monokai Extended"
 command -v exa > /dev/null && alias ls=exa
 command -v ag > /dev/null && alias ag='ag --color --pager less' && alias ack=ag
-command -v rg > /dev/null && rg() { /usr/local/bin/rg -p "$@" | less; }
+command -v rg > /dev/null && rg() { /usr/local/bin/rg -p "$@" | less -RMFXK; }
 command -v prettyping > /dev/null && alias ping="prettyping --nolegend"
 command -v htop > /dev/null && alias top=htop
 
-# Vagrant Aliases
-alias v=vagrant
-alias vst="vagrant status"
-alias vstat=vst
-alias vup="vagrant up"
-alias vhalt="vagrant halt"
-alias valt=vhalt
-alias vupp="vagrant up --provision"
-alias vssh="vagrant ssh"
-# Use `vagrant ssh-config >> ~/.ssh/config` to add current config to ssh config
-alias vsftp="sftp default"
-
 # Lazy Git aliases
-alias gcom="git checkout master"
+alias gcom="git com"
 alias gup="git up"  # Uses the `up` alias in my .gitconfigcd
 alias gst="git status"
 alias g='git'
 alias gb='git branch'
-alias gbc='git checkout -b'
+alias gbc='git switch -c'
 alias gc='git commit --verbose'
-alias gco='git checkout'
+alias gco='git switch'
 alias gls='git log --topo-order --stat --pretty=format:"${_git_log_medium_format}"'
 alias gld='git log --topo-order --stat --patch --full-diff --pretty=format:"${_git_log_medium_format}"'
 alias gp='git push'
@@ -72,7 +55,9 @@ command -v hub > /dev/null && {
   alias git=hub
   alias ci="hub ci-status"
 }
-
+take() {
+  mkdir -p $@ && cd ${@:$#}
+}
 # Pull in AWS autocomplete manually as it doesn't work automatically - https://github.com/sorin-ionescu/prezto/issues/1142
 command -v aws > /dev/null && {
   [ -f /usr/local/opt/awscli/share/zsh/site-functions/aws_zsh_completer.sh ] && source /usr/local/opt/awscli/share/zsh/site-functions/aws_zsh_completer.sh
@@ -94,16 +79,17 @@ command -v azure > /dev/null && {
 #}
 
 # Like the ~ => $HOME mapping? Well this is how I use this for other common dirs so I can easily `cd ~gh/foo` etc.
-hash -d gh="$HOME/github"
-hash -d ent2="$HOME/github/enterprise2"
-hash -d ent-chatops="$HOME/github/enterprise-chatops"
-hash -d dev="$HOME/Development"
+#hash -d gh="$HOME/github"
+#hash -d ent2="$HOME/github/enterprise2"
+#hash -d ent-chatops="$HOME/github/enterprise-chatops"
+#hash -d dev="$HOME/Development"
 
-# added by travis gem
-# shellcheck disable=SC1090
-[ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
 # shellcheck disable=SC1090
 [ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # This must always be last.
 [ -n "$DEBUG_ZSH" ] && zprof
+
