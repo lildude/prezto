@@ -39,10 +39,6 @@ zstyle ':prezto:load' pmodule \
   'directory' \
   'completion' \
   'utility' \
-  'ssh' \
-  'ruby' \
-  'fzf-marks' \
-  'shrink-path' \
   'syntax-highlighting' \
   'asdf' \
   'prompt'
