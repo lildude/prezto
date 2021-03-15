@@ -386,6 +386,13 @@
 
     local res
 
+    # CNS: Show an icon based on my configured user
+    typeset user_icon='\uf415 ' #  from Nerd Font patched font
+    #local username=$(git config user.email) # Too slow.
+    #[[ "$username" =~ "@github.com" ]] && user_icon='\uf113 ' #   from Nerd Font patched font
+    [[ "$(pwd)" =~ "github/" ]] && user_icon='\uf113 ' #   from Nerd Font patched font
+    res+="${(g::)user_icon}"
+
     if [[ -n $VCS_STATUS_LOCAL_BRANCH ]]; then
       local branch=${(V)VCS_STATUS_LOCAL_BRANCH}
       # If local branch name is at most 32 characters long, show it in full.
