@@ -38,6 +38,7 @@ command -v ag > /dev/null && alias ag='ag --color --pager less' && alias ack=ag
 command -v rg > /dev/null && rg() { /usr/local/bin/rg -p "$@" | less -RMFXK; }
 command -v prettyping > /dev/null && alias ping="prettyping --nolegend"
 command -v htop > /dev/null && alias top=htop
+command -v nvim > /dev/null && alias vi=nvim
 
 # Lazy Git aliases
 alias gcom="git com"
@@ -55,9 +56,8 @@ command -v hub > /dev/null && {
   alias git=hub
   alias ci="hub ci-status"
 }
-take() {
-  mkdir -p $@ && cd ${@:$#}
-}
+take() { mkdir -p $@ && cd ${@:$#} }
+
 # Pull in AWS autocomplete manually as it doesn't work automatically - https://github.com/sorin-ionescu/prezto/issues/1142
 command -v aws > /dev/null && {
   [ -f /usr/local/opt/awscli/share/zsh/site-functions/aws_zsh_completer.sh ] && source /usr/local/opt/awscli/share/zsh/site-functions/aws_zsh_completer.sh
