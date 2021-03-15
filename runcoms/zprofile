@@ -16,7 +16,7 @@
 # Editors
 #
 
-[ "$(uname -s)" = "Darwin" ] && HOMEBREW_EDITOR='atom -n'
+[ "$(uname -s)" = "Darwin" ] && HOMEBREW_EDITOR='code'
 EDITOR='vim'
 VISUAL='vim'
 PAGER='less'
