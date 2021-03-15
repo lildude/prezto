@@ -387,11 +387,11 @@
     local res
 
     # CNS: Show an icon based on my configured user
-    typeset user_icon='\uf415 ' #  from Nerd Font patched font
+    typeset usericon='\uf415 ' #  from Nerd Font patched font
     #local username=$(git config user.email) # Too slow.
-    #[[ "$username" =~ "@github.com" ]] && user_icon='\uf113 ' #   from Nerd Font patched font
-    [[ "$(pwd)" =~ "github/" ]] && user_icon='\uf113 ' #   from Nerd Font patched font
-    res+="${(g::)user_icon}"
+    #[[ "$username" =~ "@github.com" ]] && usericon='\uf113 ' #   from Nerd Font patched font
+    [[ "$(pwd)" =~ "github/" ]] && usericon='\uf113 ' #   from Nerd Font patched font
+    res+="${(g::)usericon}"
 
     if [[ -n $VCS_STATUS_LOCAL_BRANCH ]]; then
       local branch=${(V)VCS_STATUS_LOCAL_BRANCH}
