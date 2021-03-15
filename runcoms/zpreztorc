@@ -44,6 +44,7 @@ zstyle ':prezto:load' pmodule \
   'fzf-marks' \
   'shrink-path' \
   'syntax-highlighting' \
+  'asdf' \
   'prompt'
 
 #
@@ -148,7 +149,7 @@ zstyle ':prezto:module:fzf' colorscheme 'Solarized Light'
 # Set the prompt theme to load.
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.
-zstyle ':prezto:module:prompt' theme 'lildude'
+zstyle ':prezto:module:prompt' theme 'powerlevel10k'
 
 # Set the working directory prompt display length.
 # By default, it is set to 'short'. Set it to 'long' (without '~' expansion)
@@ -190,8 +191,8 @@ zstyle ':prezto:module:prompt' theme 'lildude'
 # Shrink Path
 #
 
-zstyle :prompt:shrink_path tilde yes
-zstyle :prompt:shrink_path last yes
+#zstyle :prompt:shrink_path tilde yes
+#zstyle :prompt:shrink_path last yes
 
 #
 # SSH
