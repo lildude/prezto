@@ -8,16 +8,7 @@
 #
 
 # Execute code that does not affect the current session in the background.
-(
-  # Function to determine the need of a zcompile. If the .zwc file
-  # does not exist, or the base file is newer, we need to compile.
-  # These jobs are asynchronous, and will not impact the interactive shell
-  zcompare() {
-    if [[ -s ${1} && ( ! -s ${1}.zwc || ${1} -nt ${1}.zwc) ]]; then
-      zcompile ${1}
-    fi
-  }
-
+{
   # Compile the completion dump to increase startup speed.
   zcompdump="${XDG_CACHE_HOME:-$HOME/.cache}/prezto/zcompdump"
   if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
