@@ -36,11 +36,13 @@ zstyle ':prezto:load' pmodule \
   'terminal' \
   'editor' \
   'history' \
+  'autosuggestions' \
   'directory' \
   'completion' \
   'utility' \
   'syntax-highlighting' \
   'asdf' \
+  'rake-fast' \
   'prompt'
 
 #

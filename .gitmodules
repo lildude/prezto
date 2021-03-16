@@ -37,3 +37,6 @@
 	path = contrib/fzf-marks
 	url = https://github.com/urbainvaes/fzf-marks.git
 	shallow = true
+[submodule "contrib/evalcache"]
+	path = contrib/evalcache
+	url = https://github.com/mroth/evalcache
