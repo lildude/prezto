@@ -2,7 +2,7 @@
 # shellcheck shell=bash # Closest thing to zsh whilst shellcheck doesn't support zsh
 
 # Profile loading the shell using `DEBUG_ZSH=1 zsh -i`
-[ -n "$DEBUG_ZSH" ] && zmodload zsh/zprof
+[ -z "$DEBUG_ZSH" ] || zmodload zsh/zprof
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -71,19 +71,6 @@ command -v azure > /dev/null && {
   source "$cache"
 }
 
-# Load nodenv automatically
-#command -v nodenv > /dev/null && eval "$(nodenv init -)"
-#nodenv() {
-#  eval "$(command nodenv init -)"
-#  nodenv "$@"
-#}
-
-# Like the ~ => $HOME mapping? Well this is how I use this for other common dirs so I can easily `cd ~gh/foo` etc.
-#hash -d gh="$HOME/github"
-#hash -d ent2="$HOME/github/enterprise2"
-#hash -d ent-chatops="$HOME/github/enterprise-chatops"
-#hash -d dev="$HOME/Development"
-
 # shellcheck disable=SC1090
 [ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
 
@@ -91,5 +78,5 @@ command -v azure > /dev/null && {
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # This must always be last.
-[ -n "$DEBUG_ZSH" ] && zprof
+[ -z "$DEBUG_ZSH" ] || zprof
 
