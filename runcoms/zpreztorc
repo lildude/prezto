@@ -40,6 +40,7 @@ zstyle ':prezto:load' pmodule \
   'fzf' \
   'directory' \
   'completion' \
+  'fasd' \
   'utility' \
   'syntax-highlighting' \
   'asdf' \
