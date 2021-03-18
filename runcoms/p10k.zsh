@@ -123,7 +123,7 @@
   typeset -g POWERLEVEL9K_ICON_BEFORE_CONTENT=
 
   # Add an empty line before each prompt.
-  typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=false
+  typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
   # Connect left prompt lines with these symbols. You'll probably want to use the same color
   # as POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_FOREGROUND below.
@@ -357,7 +357,7 @@
 
   # Untracked files icon. It's really a question mark, your font isn't broken.
   # Change the value of this parameter to show a different icon.
-  typeset -g POWERLEVEL9K_VCS_UNTRACKED_ICON='?'
+  typeset -g POWERLEVEL9K_VCS_UNTRACKED_ICON='●' # CNS: Was ?
 
   # Formatter for Git status.
   #
@@ -381,8 +381,9 @@
     local       meta='%7F' # white foreground
     local      clean='%0F' # black foreground
     local   modified='%0F' # black foreground
-    local  untracked='%0F' # black foreground
+    local  untracked='%1F' # red foreground, was '%1F' black foreground
     local conflicted='%1F' # red foreground
+    local     staged='%46F' # green foreground
 
     local res
 
@@ -426,30 +427,39 @@
       res+="${meta}:${clean}${(V)VCS_STATUS_REMOTE_BRANCH//\%/%%}"
     fi
 
+    # CNS: All counts removed as I'm not interested in them
     # ⇣42 if behind the remote.
-    (( VCS_STATUS_COMMITS_BEHIND )) && res+=" ${clean}↓${VCS_STATUS_COMMITS_BEHIND}" # CNS: replaced ⇣
+    #(( VCS_STATUS_COMMITS_BEHIND )) && res+=" ${clean}⇣${VCS_STATUS_COMMITS_BEHIND}"
+    (( VCS_STATUS_COMMITS_BEHIND )) && res+=" ${clean}↓"
     # ⇡42 if ahead of the remote; no leading space if also behind the remote: ⇣42⇡42.
     (( VCS_STATUS_COMMITS_AHEAD && !VCS_STATUS_COMMITS_BEHIND )) && res+=" "
-    (( VCS_STATUS_COMMITS_AHEAD  )) && res+="${clean}↑${VCS_STATUS_COMMITS_AHEAD}" # CNS: replaced ⇡
+    #(( VCS_STATUS_COMMITS_AHEAD  )) && res+="${clean}⇡${VCS_STATUS_COMMITS_AHEAD}"
+    (( VCS_STATUS_COMMITS_AHEAD  )) && res+="${clean}↑"
     # ⇠42 if behind the push remote.
-    (( VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=" ${clean}⇠${VCS_STATUS_PUSH_COMMITS_BEHIND}"
+    #(( VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=" ${clean}⇠${VCS_STATUS_PUSH_COMMITS_BEHIND}"
+    (( VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+="${clean}⇠"
     (( VCS_STATUS_PUSH_COMMITS_AHEAD && !VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=" "
     # ⇢42 if ahead of the push remote; no leading space if also behind: ⇠42⇢42.
-    (( VCS_STATUS_PUSH_COMMITS_AHEAD  )) && res+="${clean}⇢${VCS_STATUS_PUSH_COMMITS_AHEAD}"
+    #(( VCS_STATUS_PUSH_COMMITS_AHEAD  )) && res+="${clean}⇢${VCS_STATUS_PUSH_COMMITS_AHEAD}"
+    (( VCS_STATUS_PUSH_COMMITS_AHEAD  )) && res+="${clean}⇢"
     # *42 if have stashes.
     #(( VCS_STATUS_STASHES        )) && res+=" ${clean}*${VCS_STATUS_STASHES}" # CNS: I'm not interested in the number of stashes
     # 'merge' if the repo is in an unusual state.
     [[ -n $VCS_STATUS_ACTION     ]] && res+=" ${conflicted}|${VCS_STATUS_ACTION:u}" # CNS: Added | and uppercased
     # ~42 if have merge conflicts.
-    (( VCS_STATUS_NUM_CONFLICTED )) && res+=" ${conflicted}~${VCS_STATUS_NUM_CONFLICTED}"
+    #(( VCS_STATUS_NUM_CONFLICTED )) && res+=" ${conflicted}~${VCS_STATUS_NUM_CONFLICTED}"
+    (( VCS_STATUS_NUM_CONFLICTED )) && res+="${conflicted}~"
     # +42 if have staged changes.
-    (( VCS_STATUS_NUM_STAGED     )) && res+=" ${modified}+${VCS_STATUS_NUM_STAGED}"
+    #(( VCS_STATUS_NUM_STAGED     )) && res+=" ${modified}+${VCS_STATUS_NUM_STAGED}"
+    (( VCS_STATUS_NUM_STAGED     )) && res+="${staged}●"
     # !42 if have unstaged changes.
-    (( VCS_STATUS_NUM_UNSTAGED   )) && res+=" ${modified}!${VCS_STATUS_NUM_UNSTAGED}"
+    #(( VCS_STATUS_NUM_UNSTAGED   )) && res+=" ${modified}!${VCS_STATUS_NUM_UNSTAGED}"
+    (( VCS_STATUS_NUM_UNSTAGED   )) && res+="${modified}●"
     # ?42 if have untracked files. It's really a question mark, your font isn't broken.
     # See POWERLEVEL9K_VCS_UNTRACKED_ICON above if you want to use a different icon.
     # Remove the next line if you don't want to see untracked files at all.
-    (( VCS_STATUS_NUM_UNTRACKED  )) && res+=" ${untracked}${(g::)POWERLEVEL9K_VCS_UNTRACKED_ICON}${VCS_STATUS_NUM_UNTRACKED}"
+    #(( VCS_STATUS_NUM_UNTRACKED  )) && res+=" ${untracked}${(g::)POWERLEVEL9K_VCS_UNTRACKED_ICON}${VCS_STATUS_NUM_UNTRACKED}"
+    (( VCS_STATUS_NUM_UNTRACKED  )) && res+="${untracked}${(g::)POWERLEVEL9K_VCS_UNTRACKED_ICON}"
     # "─" if the number of unstaged files is unknown. This can happen due to
     # POWERLEVEL9K_VCS_MAX_INDEX_SIZE_DIRTY (see below) being set to a non-negative number lower
     # than the number of files in the Git index, or due to bash.showDirtyState being set to false
@@ -468,7 +478,7 @@
   # sagging, try setting POWERLEVEL9K_VCS_MAX_INDEX_SIZE_DIRTY to a number lower than the output
   # of `git ls-files | wc -l`. Alternatively, add `bash.showDirtyState = false` to the repository's
   # config: `git config bash.showDirtyState false`.
-  typeset -g POWERLEVEL9K_VCS_MAX_INDEX_SIZE_DIRTY=-1
+  typeset -g POWERLEVEL9K_VCS_MAX_INDEX_SIZE_DIRTY=-1 # CNS: I don't care about the count
 
   # Don't show Git status in prompt for repositories whose workdir matches this pattern.
   # For example, if set to '~', the Git repository at $HOME/.git will be ignored.
@@ -480,10 +490,10 @@
   # Install our own Git status formatter.
   typeset -g POWERLEVEL9K_VCS_CONTENT_EXPANSION='${$((my_git_formatter()))+${my_git_format}}'
   # Enable counters for staged, unstaged, etc.
-  typeset -g POWERLEVEL9K_VCS_{STAGED,UNSTAGED,UNTRACKED,CONFLICTED,COMMITS_AHEAD,COMMITS_BEHIND}_MAX_NUM=-1
+  typeset -g POWERLEVEL9K_VCS_{STAGED,UNSTAGED,UNTRACKED,CONFLICTED,COMMITS_AHEAD,COMMITS_BEHIND}_MAX_NUM=1 # CNS: disable counts
 
   # Custom icon
-  typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION=''  # Hide git/github icon
+  typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION=''  # CNS: Hide git/github icon
   # Custom prefix.
   # typeset -g POWERLEVEL9K_VCS_PREFIX='on '
 
