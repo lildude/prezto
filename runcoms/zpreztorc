@@ -81,24 +81,22 @@ zstyle ':prezto:module:editor' key-bindings 'emacs'
 # Allow the zsh prompt context to be shown.
 #zstyle ':prezto:module:editor' ps-context 'yes'
 
-# Use keybindings
-zstyle ':prezto:module:fzf' key-bindings 'yes'
+#
+# FZF
+#
 
-# Use completion
-zstyle ':prezto:module:fzf' completion 'yes'
-
+# Disable keybindings
+#zstyle ':prezto:module:fzf' disable-key-bindings 'yes'
+# Disable completion
+#zstyle ':prezto:module:fzf' disable-completion 'yes'
 # Set height of the fzf results (comment for full screen)
 zstyle ':prezto:module:fzf' height '30%'
-
 # Open fzf results in a tmux pane (if using tmux)
 zstyle ':prezto:module:fzf' tmux 'yes'
-
-# Set colorscheme
-# A list of available colorschemes is available in color.zsh
-# To add more color schemes of your own, consult
-# https://github.com/junegunn/fzf/wiki/Color-schemes and add values to the
-# color.zsh file accordingly
-zstyle ':prezto:module:fzf' colorscheme 'Solarized Light'
+# Order output in reverse order
+zstyle ':prezto:module:fzf' reverse 'yes'
+# Set color scheme
+zstyle ':prezto:module:fzf' color-scheme '16'
 
 #
 # Git
