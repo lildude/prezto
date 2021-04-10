@@ -362,8 +362,8 @@
 
     if (( $1 )); then
       # Styling for up-to-date Git status.
-      local       meta='%f'     # default foreground
-      local      clean='%76F'   # green foreground
+      local       meta='%244F'     # default foreground
+      local      clean='%2F'   # green foreground
       local   modified='%3F'  # yellow foreground
       local  untracked='%1F'   # red foreground
       local conflicted='%1F'  # red foreground
@@ -425,14 +425,14 @@
 
     # CNS: All counts removed as I'm not interested in them
     # CNS: Also add space if changes
-    if (( VCS_STATUS_NUM_STAGED )) || (( VCS_STATUS_NUM_UNSTAGED )) || (( VCS_STATUS_NUM_UNTRACKED )); then res+=" "; fi
+    if (( VCS_STATUS_COMMITS_BEHIND )) || (( VCS_STATUS_COMMITS_AHEAD )) || (( VCS_STATUS_NUM_STAGED )) || (( VCS_STATUS_NUM_UNSTAGED )) || (( VCS_STATUS_NUM_UNTRACKED )); then res+=" "; fi
     # ⇣42 if behind the remote.
     #(( VCS_STATUS_COMMITS_BEHIND )) && res+=" ${clean}⇣${VCS_STATUS_COMMITS_BEHIND}"
-    (( VCS_STATUS_COMMITS_BEHIND )) && res+="${clean}⇣"
+    (( VCS_STATUS_COMMITS_BEHIND )) && res+="${meta}↓"
     # ⇡42 if ahead of the remote; no leading space if also behind the remote: ⇣42⇡42.
     (( VCS_STATUS_COMMITS_AHEAD && !VCS_STATUS_COMMITS_BEHIND )) && res+=""
     #(( VCS_STATUS_COMMITS_AHEAD  )) && res+="${clean}⇡${VCS_STATUS_COMMITS_AHEAD}"
-    (( VCS_STATUS_COMMITS_AHEAD  )) && res+="${clean}⇡"
+    (( VCS_STATUS_COMMITS_AHEAD  )) && res+="${meta}↑"
     # ⇠42 if behind the push remote.
     #(( VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=" ${clean}⇠${VCS_STATUS_PUSH_COMMITS_BEHIND}"
     (( VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+="${clean}⇠"
